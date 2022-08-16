@@ -7,7 +7,7 @@ import {ICategory} from "./ICategory";
 const App = () => {
   const [categories, setCategories] = useState<Array<ICategory>>([])
 
-  useEffect(() => setCategories(JSON.parse(JSON.stringify(file))))
+  useEffect(() => setCategories(JSON.parse(JSON.stringify(file))), [])
 
   return (
     <div className="App">
