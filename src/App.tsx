@@ -1,24 +1,17 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useEffect, useState} from 'react';
 import './App.css';
+import file from './data/categories.json'
+import CategoryList from "./components/category_list/category_list.component";
+import {ICategory} from "./ICategory";
 
-function App() {
+const App = () => {
+  const [categories, setCategories] = useState<Array<ICategory>>([])
+
+  useEffect(() => setCategories(JSON.parse(JSON.stringify(file))))
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <CategoryList categories={categories} />
     </div>
   );
 }

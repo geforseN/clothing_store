@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "title": "hats",
+    "imageUrl": "https://i.ibb.co/cvpntL1/hats.png",
+    "imageAlt": "Man wears a cap"
+  },
+  {
+    "id": 2,
+    "title": "jackets",
+    "imageUrl": "https://i.ibb.co/px2tCc3/jackets.png",
+    "imageAlt": "Outerwear on hangers"
+  },
+  {
+    "id": 3,
+    "title": "sneakers",
+    "imageUrl": "https://i.ibb.co/0jqHpnp/sneakers.png",
+    "imageAlt": "Sneakers"
+
+  },
+  {
+    "id": 4,
+    "title": "women",
+    "imageUrl": "https://i.ibb.co/GCCdy8t/womens.png",
+    "imageAlt": "Woman"
+
+  },
+  {
+    "id": 5,
+    "title": "men",
+    "imageUrl": "https://i.ibb.co/R70vBrQ/men.png",
+    "imageAlt": "Man"
+  }
+]
