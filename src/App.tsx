@@ -1,18 +1,31 @@
-import React, {useEffect, useState} from 'react';
 import './App.css';
-import file from './data/categories.json'
-import CategoryList from "./components/category_list/category_list.component";
-import {ICategory} from "./ICategory";
+
+import {Outlet, Route, Routes} from "react-router-dom";
+import Home from "./routes/home/home.component";
+
+
+const Navigation = () => {
+  return (
+    <nav>
+      <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+      </ul>
+      <Outlet />
+    </nav>
+  )
+}
+
+
 
 const App = () => {
-  const [categories, setCategories] = useState<Array<ICategory>>([])
-
-  useEffect(() => setCategories(file), [])
-
-  return (
-    <div className="App">
-      <CategoryList categories={categories} />
-    </div>
+ return (
+    <Routes>
+      <Route path='/' element={<Navigation />}>
+        <Route index element={<Home />}></Route>
+      </Route>
+    </Routes>
   );
 }
 
