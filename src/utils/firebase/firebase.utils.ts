@@ -2,22 +2,18 @@ import { initializeApp } from "firebase/app";
 
 import {
   getAuth,
-  signInWithRedirect,
   signInWithPopup,
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
 } from "firebase/auth";
-
-import {getFirestore, doc, getDoc, setDoc} from "firebase/firestore"
 
 import firebaseConfig from "./firebaseConfig";
 
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-const firebaseApp = initializeApp(firebaseConfig);
-
-const googleProvider = new GoogleAuthProvider();
+initializeApp(firebaseConfig);
 
 const provider = new GoogleAuthProvider();
 provider.setCustomParameters({
@@ -25,10 +21,11 @@ provider.setCustomParameters({
 });
 
 export const auth = getAuth();
-export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
-export const signInWithGoogleRedirect = () => signInWithRedirect(auth, googleProvider);
-
 export const db = getFirestore();
+
+export const signInWithGooglePopup = () =>
+  signInWithPopup(auth, provider);
+
 
 export const createUserDocumentFromAuth = async (
   userAuth: any,
@@ -60,6 +57,7 @@ export const createUserDocumentFromAuth = async (
 
 }
 
+
 export const createAuthUserWithEmailAndPassword = async (
   email: string, password: string
 ) => {
@@ -67,6 +65,7 @@ export const createAuthUserWithEmailAndPassword = async (
 
   return await createUserWithEmailAndPassword(auth, email, password);
 }
+
 
 export const signInAuthUserWithEmailAndPassword = async (
   email: string, password: string
