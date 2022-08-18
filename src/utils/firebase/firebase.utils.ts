@@ -1,4 +1,7 @@
+// https://firebase.google.com/docs/web/setup#available-libraries
 import { initializeApp } from "firebase/app";
+
+import {getFirestore, doc, getDoc, setDoc} from "firebase/firestore";
 
 import {
   getAuth,
@@ -74,3 +77,11 @@ export const signInAuthUserWithEmailAndPassword = async (
 
   return await signInWithEmailAndPassword(auth, email, password);
 };
+
+
+export const signOutUser = async () =>
+  await signOut(auth);
+
+
+export const onAuthStateChangedListener = (callback: any) =>
+  onAuthStateChanged(auth, callback);
