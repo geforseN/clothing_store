@@ -1,7 +1,7 @@
 import './button.style.scss'
 
 const Button = (props: any) => {
-  const {children, buttonType, ...otherProps}= props
+  const {children, buttonType, ...otherProps} = props
 
   // TODO button type prop
   const buttonClassName =
