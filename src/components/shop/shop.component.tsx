@@ -1,24 +1,11 @@
-import {useContext} from "react";
+import {FC, useContext} from "react";
 import {ProductsContext} from "../../contexts/products.context.";
 import ProductCard from "../product-card/product-card.component";
 import './shop.style.scss'
 
-const Shop = () => {
+const Shop: FC = () => {
   const {products} = useContext(ProductsContext);
 
-  //ADD <ProductsList prop={Context>} /> component
-  // because shop component can have more than 1 child components
-  // <Shop /> component      ||
-  //                         ||
-  // should be like this     \/
-  //
-  //          <Options />
-  //          <Filter />
-  //          <ProductsQuickInfo>  //    CategoryName  &&  HowMuchProducts
-  //          <ChooseSortMethod />
-  //          <ProductsList /> // finally
-  //          <SelectPageNumber />
-  //
   return (
     <div className="products-container">
       {products.map(product =>
@@ -28,4 +15,20 @@ const Shop = () => {
   );
 };
 
+
 export default Shop;
+
+
+//ADD <ProductsList prop={Context>} /> component
+// because shop component can have more than 1 child components
+// <Shop /> component      ||
+//                         ||
+// should be like this     \/
+//
+//          <Options />
+//          <Filter />
+//          <ProductsQuickInfo>  //    CategoryName  &&  HowMuchProducts
+//          <ChooseSortMethod />
+//          <ProductsList /> // finally
+//          <SelectPageNumber />
+//

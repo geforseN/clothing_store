@@ -11,6 +11,9 @@ export const ProductsProvider = ({children}: any)  => {
   const value = {products, setProducts};
 
   return (
-    <ProductsContext.Provider value={value}>{children}</ProductsContext.Provider>
-  )
-}
+    // @ts-ignore value
+    <ProductsContext.Provider value={value}>
+      {children}
+    </ProductsContext.Provider>
+  );
+};
