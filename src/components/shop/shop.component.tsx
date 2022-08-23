@@ -9,6 +9,7 @@ const Shop: FC = () => {
   return (
     <div className="products-container">
       {products.map(product =>
+        // @ts-ignore fix never
         <ProductCard key={product.id} product={product} />
       )}
     </div>
