@@ -24,5 +24,8 @@ export interface product {
   name: string
   imageUrl: string
   price: number
-  quantity? : number
+}
+
+export interface cartItem extends product {
+  quantity : number
 }
