@@ -3,7 +3,7 @@ import PRODUCTS from '../data/shop-data.json'
 
 
 export const ProductsContext = createContext({
-  products: PRODUCTS,
+  products: [],
 })
 
 export const ProductsProvider = ({children}: any)  => {
@@ -17,3 +17,12 @@ export const ProductsProvider = ({children}: any)  => {
     </ProductsContext.Provider>
   );
 };
+
+
+export interface product {
+  id: number
+  name: string
+  imageUrl: string
+  price: number
+  quantity? : number
+}

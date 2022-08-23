@@ -1,4 +1,5 @@
 import {createContext, useState} from "react";
+import {product as cartItem} from "./products.context.";
 
 export const CartContext = createContext({
   isCartOpen: false,

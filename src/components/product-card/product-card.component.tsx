@@ -1,3 +1,8 @@
+import {FC, useContext} from "react";
+import Button from "../button/button.component";
+import {CartContext} from "../../contexts/cart.context";
+import {product} from "../../contexts/products.context.";
+
 import './product-card.style.scss'
 import {FC} from "react";
 import Button from "../button/button.component";
@@ -18,13 +23,8 @@ const ProductCard: FC<ProductCardProps> = ({product}) => {
 };
 
 
-export type ProductCardProps  = {
-  product: {
-    id: number
-    name: string
-    imageUrl: string
-    price: number
-  }
+export interface ProductCardProps {
+  product: product
 }
 
 
