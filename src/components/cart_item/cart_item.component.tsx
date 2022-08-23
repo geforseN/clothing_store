@@ -1,9 +1,12 @@
-import './cart-item.styles.scss';
 import {FC} from "react";
-import {product} from "../../contexts/products.context.";
 
-const CartItem: FC<CartItemProps> = ({ cartItem  }) => {
-  const { name, imageUrl, price, quantity } = cartItem;
+import {cartItem} from "../../contexts/products.context.";
+
+import './cart_item.style.scss'
+
+
+const CartItem: FC<CartItemProps> = ({cartItem}) => {
+  const {name, imageUrl, price, quantity} = cartItem;
 
   return (
     <div className='cart-item-container'>
@@ -20,7 +23,7 @@ const CartItem: FC<CartItemProps> = ({ cartItem  }) => {
 
 
 export interface CartItemProps {
-  cartItem: product
+  cartItem: cartItem
 }
 
 export default CartItem;
