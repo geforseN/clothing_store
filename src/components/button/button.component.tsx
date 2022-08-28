@@ -1,22 +1,29 @@
-import './button.style.scss'
+import {ButtonHTMLAttributes, DetailedHTMLProps, FC} from "react";
+import {CustomButtons, CustomButtonsKeys} from "./button.types";
 
-const Button = (props: any) => {
-  const {children, buttonType, ...otherProps} = props
 
-  // TODO button type prop
-  const buttonClassName =
-    buttonType === 'google' ?  'google-sign-in' :
-    buttonType === 'inverted' ? 'inverted' :
-      ''
+const Button: FC<CustomButtonProps> = ({children, buttonType, ...otherProps}) => {
+  const CustomButton = getCustomButton(buttonType);
 
   return (
-    <button
-      className={`button-container ${buttonClassName}`}
-      {...otherProps}
-    >
+    <CustomButton {...otherProps}>
       {children}
-    </button>
+    </CustomButton>
   );
 };
 
+export interface RegularButtonProps extends DetailedHTMLProps<
+  ButtonHTMLAttributes<HTMLButtonElement>,
+  HTMLButtonElement>
+{}
+
+export interface CustomButtonProps extends RegularButtonProps {
+  buttonType?: CustomButtonsKeys
+}
+
+const getCustomButton = (buttonType: CustomButtonsKeys = "base"): FC<RegularButtonProps> => {
+  return CustomButtons[buttonType];
+}
+
 export default Button;
+
