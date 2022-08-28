@@ -8,22 +8,30 @@ import CartItem from "../cart_item/cart_item.component";
 import './cart-dropdown.style.scss'
 
 const CartDropdown = () => {
-  const {cartItems} = useContext(CartContext);
+  const {cartItems, setIsCartOpen} = useContext(CartContext);
 
   const navigate = useNavigate();
 
   const goToCheckoutHandler = () => {
     navigate('/checkout');
   };
+
+  const buttonHandler = () => {
+    goToCheckoutHandler()
+    setIsCartOpen(false)
+  }
+
   return (
     <div className='cart-dropdown-container'>
+      {cartItems.length === 0 ? <div>No items in cart</div> :
       <div className='cart-items'>
         {cartItems.map((item) => (
           // @ts-ignore fix never
           <CartItem key={item.id} cartItem={item} />
         ))}
       </div>
-      <Button onClick={goToCheckoutHandler}>GO TO CHECKOUT</Button>
+      }
+      <Button onClick={buttonHandler}>go to checkout</Button>
     </div>
   );
 };
