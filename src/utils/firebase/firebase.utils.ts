@@ -1,20 +1,20 @@
 // https://firebase.google.com/docs/web/setup#available-libraries
-import { initializeApp } from "firebase/app";
+import {initializeApp} from "firebase/app";
 
-import {getFirestore, doc, getDoc, setDoc} from "firebase/firestore";
+import {collection, doc, getDoc, getDocs, getFirestore, query, setDoc, writeBatch,} from "firebase/firestore";
 
 import {
-  getAuth,
-  signInWithPopup,
-  GoogleAuthProvider,
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signOut,
+  getAuth,
+  GoogleAuthProvider,
   onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
 } from "firebase/auth";
 
 import firebaseConfig from "./firebaseConfig";
-
+import SHOP_DATA from "../../data/categories";
 
 initializeApp(firebaseConfig);
 
@@ -29,7 +29,34 @@ export const db = getFirestore();
 export const signInWithGooglePopup = () =>
   signInWithPopup(auth, provider);
 
+export const addCollectionAndDocuments = async (
+  collectionKey: string,
+  objectsToAdd: typeof SHOP_DATA
+) => {
+  const collectionRef = collection(db, collectionKey);
+  const batch = writeBatch(db);
 
+  objectsToAdd.forEach(object => {
+    const docRef = doc(collectionRef, object.title.toLowerCase());
+    batch.set(docRef, object);
+  })
+
+  await batch.commit();
+}
+
+export const getCategoriesAndDocuments = async () => {
+  const collectionRef = collection(db, 'categories');
+  const q = query(collectionRef);
+
+  const querySnapshot = await getDocs(q);
+  return querySnapshot.docs.reduce((acc, docSnapshot) => {
+    // TODO {title, imageURL, id?, items} = docSnapshot.data()
+    const {title, items} = docSnapshot.data() // as typeof SHOP_DATA;
+    // @ts-ignore as
+    acc[title.toLowerCase()] = items;
+    return acc // as typeof SHOP_DATA;
+  }, {});
+};
 export const createUserDocumentFromAuth = async (
   userAuth: any,
   additionalInformation = {}

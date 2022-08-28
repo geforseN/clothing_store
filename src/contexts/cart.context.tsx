@@ -1,5 +1,5 @@
 import {createContext, useEffect, useState} from "react";
-import {product, cartItem} from "./products.context.";
+import {product, cartItem} from "./categories.context";
 
 
 export const CartContext = createContext({
@@ -92,8 +92,11 @@ function removeCartItem(
   if (existingCartItem.quantity === 1) {
     return clearCartItem(cartItems, cartItemToRemove);
   }
-
   // TODO reduceCardItems one line function
+  // const cartItemIndex = cartItems.findIndex(cartItems => cartItems.id === cartItemToRemove.id);
+  // cartItems[cartItemIndex] = { ...cartItems[cartItemIndex], quantity: cartItem.quantity - 1 }
+
+
   return cartItems.map(cartItem =>
     cartItem.id === cartItemToRemove.id ? (
       { ...cartItem, quantity: cartItem.quantity - 1 }

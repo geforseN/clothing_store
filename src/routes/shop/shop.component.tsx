@@ -1,18 +1,22 @@
-import {FC, useContext} from "react";
-import {ProductsContext} from "../../contexts/products.context.";
-import ProductCard from "../product-card/product-card.component";
+import {FC} from "react";
+import {Route, Routes} from "react-router-dom";
+
+
+import CategoriesPreview from "../categories-preview/categories-preview.component";
+import Category from "../category/category.component";
+
 import './shop.style.scss'
 
+
 const Shop: FC = () => {
-  const {products} = useContext(ProductsContext);
+  // TODO splice categoriesMap values
+  //  because we only need some values, not all
 
   return (
-    <div className="products-container">
-      {products.map(product =>
-        // @ts-ignore fix never
-        <ProductCard key={product.id} product={product} />
-      )}
-    </div>
+      <Routes>
+        <Route index element={<CategoriesPreview />} />
+        <Route path=':category' element={<Category />} />
+      </Routes>
   );
 };
 

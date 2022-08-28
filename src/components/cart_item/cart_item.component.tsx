@@ -1,6 +1,6 @@
 import {FC} from "react";
 
-import {cartItem} from "../../contexts/products.context.";
+import {cartItem} from "../../contexts/categories.context";
 
 import './cart_item.style.scss'
 

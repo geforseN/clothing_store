@@ -1,16 +1,19 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {ICategory} from "../../ICategory";
 import "./category_item.style..scss"
 
-const CategoryItem = ({ category }: CategoryItemProps) => {
-  const { title, imageUrl, imageAlt } = category;
+const CategoryItem: FC<CategoryItemProps> = ({category}) => {
+  const {title, imageUrl} = category;
 
+  // TODO position relative in CSS
+  //  uncomment <img />
+  //  refactor CSS styles
   return (
     <div className='category-container'>
       {/*<img className='background-image' src={`${imageUrl}`} alt=""/>*/}
       <div className='background-image' style={{ backgroundImage: `url(${imageUrl})` }} />
       <div className='category-body-container' >
-        <h2>{title.toLocaleUpperCase()}</h2>
+        <h2>{title}</h2>
         <p>Shop Now</p>
       </div>
     </div>
