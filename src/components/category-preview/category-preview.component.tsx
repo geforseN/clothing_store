@@ -3,6 +3,7 @@ import ProductCard from "../product-card/product-card.component";
 
 import {FC} from "react";
 import {ICategory} from "../../ICategory";
+import {Link} from "react-router-dom";
 
 const CategoryPreview: FC<CategoryPreviewProps> = ({category}) => {
   const {title, items} = category;
@@ -11,7 +12,9 @@ const CategoryPreview: FC<CategoryPreviewProps> = ({category}) => {
   return (
     <div className='category-preview-container'>
       <h2>
-        <span className='title'>{title}</span>
+        <Link className='title' to={title}>
+          {title}
+        </Link>
       </h2>
       <div className='preview'>
         {
