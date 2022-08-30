@@ -12,6 +12,7 @@ const ProductCard: FC<ProductCardProps> = ({product}) => {
 
   const addProductToCart = () => addItemToCart(product);
 
+  // TODO make Button accessible by tab
   return (
     <div className='product-card-container'>
       <img src={imageUrl} alt={name} />
