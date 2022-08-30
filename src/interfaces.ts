@@ -4,10 +4,15 @@
 
 export interface ICategory {
   title: string
-  id?: number
-  imageUrl?: string
-  items?: Array<IItem>
+  id: number
+  imageUrl: string
 }
+
+export interface ICategoryPreview {
+  title: string
+  items: Array<IItem>
+}
+
 
 export interface IItem {
   id: number
