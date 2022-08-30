@@ -1,6 +1,6 @@
 import {FC, useContext} from 'react';
 
-import {CartContext} from '../../contexts/cart.context';
+import {CartContext} from '../../contexts/cart/cart.context';
 
 import {cartItem} from "../../contexts/categories.context";
 import {

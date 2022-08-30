@@ -1,5 +1,5 @@
 import {createContext, useEffect, useState} from "react";
-import {product, cartItem} from "./categories.context";
+import {product, cartItem} from "../categories.context";
 
 
 export const CartContext = createContext({
@@ -16,8 +16,8 @@ export const CartContext = createContext({
 export const CartProvider = ({children}: any) => {
   const [isCartOpen, setIsCartOpen] = useState<boolean>(false);
   const [cartItems, setCartItems] = useState<Array<cartItem>>([]);
-  const [cartCount, setCartCount] = useState(0);
-  const [cartTotal, setCartTotal] = useState(0);
+  const [cartCount, setCartCount] = useState<number>(0);
+  const [cartTotal, setCartTotal] = useState<number>(0);
 
   useEffect(() => {
     const newCartCount = cartItems.reduce(
