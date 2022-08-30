@@ -1,11 +1,10 @@
 import React, {FC} from 'react';
 
-import {ICategory} from "../../interfaces";
 import CategoryItem from "../category_item/category_item.component";
 
 import {CategoriesContainer} from "./category_list.styles";
 
-const CategoryList: FC<CategoryListProps> = ({categories}) => {
+const CategoryList: FC = () => {
   return (
     <CategoriesContainer>
       {categories.map(category =>
@@ -15,9 +14,32 @@ const CategoryList: FC<CategoryListProps> = ({categories}) => {
   );
 };
 
-
-interface CategoryListProps {
-  categories: Array<ICategory>
-}
+const categories = [
+  {
+    id: 1,
+    title: 'hats',
+    imageUrl: 'https://i.ibb.co/cvpntL1/hats.png',
+  },
+  {
+    id: 2,
+    title: 'jackets',
+    imageUrl: 'https://i.ibb.co/px2tCc3/jackets.png',
+  },
+  {
+    id: 3,
+    title: 'sneakers',
+    imageUrl: 'https://i.ibb.co/0jqHpnp/sneakers.png',
+  },
+  {
+    id: 4,
+    title: 'womens',
+    imageUrl: 'https://i.ibb.co/GCCdy8t/womens.png',
+  },
+  {
+    id: 5,
+    title: 'mens',
+    imageUrl: 'https://i.ibb.co/R70vBrQ/men.png',
+  },
+];
 
 export default CategoryList;
