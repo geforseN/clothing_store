@@ -1,22 +1,18 @@
 import React, {FC} from 'react';
-import {ICategory} from "../../ICategory";
-import "./category_item.style..scss"
+import {ICategory} from "../../interfaces";
+import {CategoryItemContainer, ShopNowLink, BackgroundImg} from "./category_item.styles";
 
 const CategoryItem: FC<CategoryItemProps> = ({category}) => {
   const {title, imageUrl} = category;
 
-  // TODO position relative in CSS
-  //  uncomment <img />
-  //  refactor CSS styles
   return (
-    <div className='category-container'>
-      {/*<img className='background-image' src={`${imageUrl}`} alt=""/>*/}
-      <div className='background-image' style={{ backgroundImage: `url(${imageUrl})` }} />
-      <div className='category-body-container' >
+    <CategoryItemContainer>
+      <BackgroundImg src={`${imageUrl}`} alt={title}/>
+      <ShopNowLink to={`shop/${title}`}>
         <h2>{title}</h2>
         <p>Shop Now</p>
-      </div>
-    </div>
+      </ShopNowLink>
+    </CategoryItemContainer>
   );
 };
 
