@@ -1,15 +1,17 @@
 import React, {FC} from 'react';
-import {ICategory} from "../../ICategory";
+
+import {ICategory} from "../../interfaces";
 import CategoryItem from "../category_item/category_item.component";
-import "./category_list.style.scss"
+
+import {CategoriesContainer} from "./category_list.styles";
 
 const CategoryList: FC<CategoryListProps> = ({categories}) => {
   return (
-    <div className='categories-container'>
+    <CategoriesContainer>
       {categories.map(category =>
         <CategoryItem key={category.id} category={category} />
       )}
-    </div>
+    </CategoriesContainer>
   );
 };
 
