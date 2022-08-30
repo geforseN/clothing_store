@@ -2,10 +2,17 @@ import {FC, useContext} from 'react';
 
 import {CartContext} from '../../contexts/cart.context';
 
-import './checkout-item.style.scss';
 import {cartItem} from "../../contexts/categories.context";
+import {
+  ItemCell,
+  CheckoutItemContainer,
+  ItemImageCell,
+  Arrow,
+  ItemRemoveCell,
+  Quantity, ItemPriceDetails
+} from "./checkout-item.styles";
 
-const CheckoutItem: FC<CheckoutItemProps> = ({ cartItem }) => {
+const CheckoutItem: FC<CheckoutItemProps> = ({cartItem}) => {
   const {name, imageUrl, price, quantity} = cartItem;
 
   const {removeItemFromCart, addItemToCart, clearItemFromCart} =
@@ -16,30 +23,27 @@ const CheckoutItem: FC<CheckoutItemProps> = ({ cartItem }) => {
   const clearItemHandler = () => clearItemFromCart(cartItem);
 
   return (
-    <tr className='checkout-item-container'>
-      <td className='image-container'>
+    <CheckoutItemContainer>
+      <ItemImageCell>
         <img src={imageUrl} alt={`${name}`} />
-      </td>
-      <td className='name'>
-        <span> {name} </span>
-      </td>
-      <td style={{display: 'flex', justifyContent: "center", height: "inherit", alignItems: "center"}}>
-        {}
-        <div className='quantity'>
-          <div className='arrow' onClick={removeItemHandler}>&#10094;</div>
-          <span className='value'>{quantity}</span>
-          <div className='arrow' onClick={addItemHandler}>&#10095;</div>
-        </div>
-      </td>
-      <td>
-        <span className='price'> {price}</span>
-      </td>
-      <td className='remove-button' onClick={clearItemHandler}>
-        &#10005;
-      </td>
-    </tr>
+      </ItemImageCell>
+      <ItemCell>{name}</ItemCell>
+      <ItemCell>
+        <Quantity>
+          <Arrow onClick={removeItemHandler}>&#10094;</Arrow>
+          <span>{quantity}</span>
+          <Arrow onClick={addItemHandler}>&#10095;</Arrow>
+        </Quantity>
+      </ItemCell>
+      <ItemCell>
+        <div>${price * quantity}</div>
+        <ItemPriceDetails>${price} × {quantity}qty</ItemPriceDetails>
+      </ItemCell>
+      <ItemRemoveCell onClick={clearItemHandler}>✕</ItemRemoveCell>
+    </CheckoutItemContainer>
   );
 };
+
 
 export interface CheckoutItemProps {
   cartItem: cartItem
