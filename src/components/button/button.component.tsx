@@ -1,4 +1,5 @@
 import {ButtonHTMLAttributes, DetailedHTMLProps, FC} from "react";
+
 import {CustomButtons, CustomButtonsKeys} from "./button.types";
 
 
