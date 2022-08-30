@@ -1,13 +1,14 @@
 import styled from "styled-components";
 import {Link} from "react-router-dom";
 
-
+// TODO better styling
 export const NavigationContainer = styled.nav`
   height: 70px;
   width: 100%;
   display: flex;
   justify-content: space-between;
   margin-bottom: 25px;
+  background-color: aliceblue;
 `
 
 export const LogoContainer = styled(Link)`
