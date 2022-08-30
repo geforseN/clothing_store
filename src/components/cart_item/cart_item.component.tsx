@@ -2,22 +2,22 @@ import {FC} from "react";
 
 import {cartItem} from "../../contexts/categories.context";
 
-import './cart_item.style.scss'
+import {CartItemContainer, ItemDetails} from "./cart_item.styles";
 
 
 const CartItem: FC<CartItemProps> = ({cartItem}) => {
   const {name, imageUrl, price, quantity} = cartItem;
 
   return (
-    <div className='cart-item-container'>
+    <CartItemContainer>
       <img src={imageUrl} alt={`${name}`} />
-      <div className='item-details'>
+      <ItemDetails>
         <span className='name'>{name}</span>
         <span className='price'>
           {quantity} x ${price}
         </span>
-      </div>
-    </div>
+      </ItemDetails>
+    </CartItemContainer>
   );
 };
 
