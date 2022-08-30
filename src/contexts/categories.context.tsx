@@ -1,7 +1,7 @@
 import {createContext, useEffect, useState} from "react";
 
 import {getCategoriesAndDocuments} from "../utils/firebase/firebase.utils";
-import {ICategory} from "../ICategory";
+import {ICategory} from "../interfaces";
 
 export const CategoriesContext = createContext({
   categoriesMap: [],
@@ -15,23 +15,6 @@ export const CategoriesProvider = ({children}: any)  => {
     const getCategoriesMap = async () => {
       const map = await getCategoriesAndDocuments()
       console.log(map)
-
-      /* {
-      *  hats: [
-      *         {
-      *           id: Number,
-      *           imageUrl: String,
-      *           name: String,
-      *           price: Number,
-      *         },
-      *         {...},
-      *          ... ,
-      *         {...}
-      *        ],
-      *  jackets: [{...}, ..., {...}],
-      *
-      *  }
-      * */
       setCategoriesMap(map);
     }
     getCategoriesMap();

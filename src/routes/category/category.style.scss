@@ -6,8 +6,24 @@
 }
 
 .category-title {
+  display: inline-block;
   font-size: 38px;
-  margin-bottom: 25px;
-  text-align: center;
+  margin: 0 12px 25px 0;
   text-transform: uppercase;
+}
+
+.prev-page {
+  padding: 4px 4px 0;
+  text-transform: capitalize;
+  border-bottom: 2px black dashed;
+
+  //background-color: darkslategrey;
+  background-color: grey;
+  cursor: pointer;
+  transition: color 0.2s linear, border-color 0.2s linear;
+
+  &:hover {
+    color: orangered;
+    border-color: orangered;
+  }
 }
