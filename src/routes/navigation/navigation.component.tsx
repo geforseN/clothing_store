@@ -20,28 +20,14 @@ const Navigation = () => {
   return (
     <>
       <NavigationContainer>
-        <LogoContainer to='/' >
-          <CrownLogo />
-        </LogoContainer>
+        <LogoContainer to='/' ><CrownLogo /></LogoContainer>
         <NavLinks>
-          <NavLink to='/shop'>
-            SHOP
-          </NavLink>
-          <NavLink to='/contacts'>
-            CONTACT
-          </NavLink>
-          {currentUser ? (
-            <NavLink as='span' onClick={signOutUser}>
-              SIGN OUT
-            </NavLink>
-          ) : (
-            <NavLink to='/auth'>
-              SIGN IN
-            </NavLink>
-          )}
-          <NavLink as='li'>
-            <CartIcon />
-          </NavLink>
+          <NavLink to='/shop'>SHOP</NavLink>
+          <NavLink to='/contacts'>CONTACT</NavLink>
+          {!currentUser ? <NavLink to='/auth'>SIGN IN</NavLink> :
+            <NavLink as='span' onClick={signOutUser}>SIGN OUT</NavLink>
+          }
+          <NavLink as='li'><CartIcon /></NavLink>
         </NavLinks>
         {isCartOpen && <CartDropdown /> }
       </NavigationContainer>
