@@ -11,17 +11,12 @@ const CategoriesPreview: FC = () => {
   const categoriesMap = useSelector(selectCategoriesMap);
   const isLoading = useSelector(selectCategoriesIsLoading);
 
-  return isLoading ? <Spinner /> : (
+  return (
     <>
-      {isLoading ? (
-        <Spinner />
-      ) : (
-        Object.keys(categoriesMap).map((title) => {
-          const products = categoriesMap[title];
-          return (
-            <CategoryPreview key={title} title={title} products={products} />
-          );
-        })
+      {isLoading ? <Spinner /> : (
+        Object.entries(categoriesMap).map(([title, products]) =>
+          <CategoryPreview key={title} title={title} products={products} />
+        )
       )}
     </>
   );
