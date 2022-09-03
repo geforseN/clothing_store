@@ -11,7 +11,6 @@ export const BaseButton = styled.button`
   width: auto;
   min-height: 50px;
   letter-spacing: 0.5px;
-  //line-height: 50px;
   font-size: 15px;
   
   background-color: black;
