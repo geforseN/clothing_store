@@ -1,7 +1,3 @@
-// TODO ICategoryPreview { title: string, items: Array<IItems> }
-//  ICategory extends ICategoryPreview { ...ICategory, id: number, imageUrl: string }
-
-
 export interface ICategory {
   title: string
   id: number

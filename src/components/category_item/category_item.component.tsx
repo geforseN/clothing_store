@@ -1,6 +1,7 @@
 import React, {FC} from 'react';
-import {ICategory} from "../../interfaces";
+
 import {CategoryItemContainer, ShopNowLink, BackgroundImg} from "./category_item.styles";
+import {Category} from "../../store/category/category.types";
 
 const CategoryItem: FC<CategoryItemProps> = ({category}) => {
   const {title, imageUrl} = category;
@@ -18,7 +19,7 @@ const CategoryItem: FC<CategoryItemProps> = ({category}) => {
 
 
 export interface CategoryItemProps {
-  category: ICategory
+  category: Category
 }
 
 export default CategoryItem;
