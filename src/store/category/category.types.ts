@@ -17,6 +17,5 @@ export type CategoryItem = {
   price: number
 }
 
-export type CategoryMap = {
-  [key: string]: Array<CategoryItem>
-}
+
+export type CategoryMap = Record<string, Array<CategoryItem>>
