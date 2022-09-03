@@ -1,20 +1,19 @@
 import {FC} from "react";
 
 import ProductCard from "../product-card/product-card.component";
-import {ICategoryPreview} from "../../interfaces";
 
 import {TitleLink, Preview, CategoryPreviewContainer} from "./category-preview.styles";
+import {CategoryItem} from "../../store/category/category.types";
 
-const CategoryPreview: FC<CategoryPreviewProps> = ({category}) => {
-  const {title, items} = category;
+const CategoryPreview: FC<CategoryPreviewProps> = ({ title, products }) => {
   const START = 0, END = 4;
 
   return (
     <CategoryPreviewContainer>
       <h2><TitleLink to={title}>{title}</TitleLink></h2>
       <Preview>
-        {items.slice(START, END).map(item =>
-          <ProductCard key={item.id} product={item}/>
+        {products.slice(START, END).map(product =>
+          <ProductCard key={product.id} product={product}/>
         )}
       </Preview>
     </CategoryPreviewContainer>
@@ -23,7 +22,8 @@ const CategoryPreview: FC<CategoryPreviewProps> = ({category}) => {
 
 
 export interface CategoryPreviewProps {
-  category: ICategoryPreview
+  title: string
+  products: Array<CategoryItem>
 }
 
 

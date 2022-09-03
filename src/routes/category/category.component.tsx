@@ -1,21 +1,24 @@
-import {useContext, useState, useEffect} from 'react';
+import {useState, useEffect} from 'react';
 import {useNavigate, useParams} from 'react-router-dom';
+import {useSelector} from "react-redux";
 
 import ProductCard from '../../components/product-card/product-card.component';
 
-import {CategoriesContext} from '../../contexts/categories.context';
+import {selectCategoriesIsLoading, selectCategoriesMap} from "../../store/category/category.selector";
 
-import './category.style.scss';
+import './category.styles';
+import Spinner from "../../components/spinner/spinner.component";
+import {CategoryContainer, LinkToPreviousPage, Title} from "./category.styles";
+
 
 const Category = () => {
   const {category} = useParams();
   const navigate = useNavigate();
-  const {categoriesMap} = useContext(CategoriesContext);
-  // @ts-ignore
+  const categoriesMap = useSelector(selectCategoriesMap);
+  const isLoading = useSelector(selectCategoriesIsLoading);
   const [products, setProducts] = useState(categoriesMap[category]);
 
   useEffect(() => {
-    // @ts-ignore
     setProducts(categoriesMap[category]);
   }, [category, categoriesMap]);
 
@@ -23,17 +26,19 @@ const Category = () => {
 
   return (
     <>
-      <h2 className='category-title'>{category}</h2>
-      <a className='prev-page' onClick={toPreviousPage}>
+      <Title>{category}</Title>
+      <LinkToPreviousPage onClick={toPreviousPage}>
         to previous page
-      </a>
-      <div className='category-container'>
-        {products && products.map((product: any) => (
+      </LinkToPreviousPage>
+      {isLoading ? <Spinner/> :
+        <CategoryContainer>
+          {products?.map(product =>
             <ProductCard key={product.id} product={product} />
-          ))}
-      </div>
+          )}
+        </CategoryContainer>
+      }
     </>
-  );
+  )
 };
 
 export default Category;

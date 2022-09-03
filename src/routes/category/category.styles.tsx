@@ -1,18 +1,21 @@
-.category-container {
+import styled from "styled-components";
+
+
+export const CategoryContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   column-gap: 20px;
   row-gap: 50px;
-}
+`
 
-.category-title {
+export const Title = styled.h2`
   display: inline-block;
   font-size: 38px;
   margin: 0 12px 25px 0;
   text-transform: uppercase;
-}
+`
 
-.prev-page {
+export const LinkToPreviousPage = styled.button`
   padding: 4px 4px 0;
   text-transform: capitalize;
   border-bottom: 2px black dashed;
@@ -26,4 +29,4 @@
     color: orangered;
     border-color: orangered;
   }
-}
+`

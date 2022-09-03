@@ -1,16 +1,19 @@
-import {FC} from "react";
+import {FC, useEffect} from "react";
 import {Route, Routes} from "react-router-dom";
+import {useDispatch} from "react-redux";
 
+import {fetchCategoriesStart} from "../../store/category/category.action";
 
-import CategoriesPreview from "../categories-preview/categories-preview.component";
 import Category from "../category/category.component";
-
-import './shop.style.scss'
+import CategoriesPreview from "../categories-preview/categories-preview.component";
 
 
 const Shop: FC = () => {
-  // TODO splice categoriesMap values
-  //  because we only need some values, not all
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchCategoriesStart());
+  }, []);
 
   return (
       <Routes>
@@ -22,13 +25,11 @@ const Shop: FC = () => {
 
 
 export default Shop;
-
-
 //ADD <ProductsList prop={Context>} /> component
 // because shop component can have more than 1 child components
-// <Shop /> component      ||
 //                         ||
-// should be like this     \/
+//   <Shop /> component    ||
+//   should be like this   \/
 //
 //          <Options />
 //          <Filter />
