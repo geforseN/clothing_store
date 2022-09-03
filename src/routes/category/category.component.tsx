@@ -3,16 +3,16 @@ import {useNavigate, useParams} from 'react-router-dom';
 import {useSelector} from "react-redux";
 
 import ProductCard from '../../components/product-card/product-card.component';
+import Spinner from "../../components/spinner/spinner.component";
 
 import {selectCategoriesIsLoading, selectCategoriesMap} from "../../store/category/category.selector";
 
-import './category.styles';
-import Spinner from "../../components/spinner/spinner.component";
 import {CategoryContainer, LinkToPreviousPage, Title} from "./category.styles";
 
 
 const Category = () => {
   const {category} = useParams();
+  if (!category) throw Error("Failed to get category name from URL parameters");
   const navigate = useNavigate();
   const categoriesMap = useSelector(selectCategoriesMap);
   const isLoading = useSelector(selectCategoriesIsLoading);

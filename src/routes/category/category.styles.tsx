@@ -15,6 +15,7 @@ export const Title = styled.h2`
   text-transform: uppercase;
 `
 
+// TODO change LinkToPreviousPage from button to Link
 export const LinkToPreviousPage = styled.button`
   padding: 4px 4px 0;
   text-transform: capitalize;
