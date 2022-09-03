@@ -1,11 +1,11 @@
 import React from 'react';
 import '../../App.css';
-import CategoryList from "../../components/category_list/category_list.component";
+import DirectoryList from "../../components/category_list/directory_list.component";
 
 const Home = () => {
   return (
     <div className="App">
-      <CategoryList/>
+      <DirectoryList/>
     </div>
   )
 }
