@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../App.css';
-import DirectoryList from "../../components/category_list/directory_list.component";
+import DirectoryList from "../../components/directory_list/directory_list.component";
 
 const Home = () => {
   return (

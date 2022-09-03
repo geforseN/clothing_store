@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 
-import DirectoryItem from "../category_item/directory_item.component";
+import DirectoryItem from "../directory_item/directory_item.component";
 
 import {directoriesData as directories} from "../../data/categories";
 
