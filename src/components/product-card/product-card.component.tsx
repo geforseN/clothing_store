@@ -1,35 +1,41 @@
-import {FC, useContext} from "react";
-import Button from "../button/button.component";
-import {CartContext} from "../../contexts/cart/cart.context";
-import {product} from "../../contexts/categories.context";
+import {FC} from "react";
+import {useDispatch, useSelector} from "react-redux";
 
-import './product-card.style.scss'
+import {CategoryItem} from "../../store/category/category.types";
+import {addItemToCart} from "../../store/cart/cart.action";
+
+import Button from "../button/button.component";
+
+import './product-card.styles'
+import {selectCartItems} from "../../store/cart/cart.selector";
+import {Footer, Name, Price, ProductCartContainer} from "./product-card.styles";
 
 const ProductCard: FC<ProductCardProps> = ({product}) => {
   const {name, price, imageUrl} = product;
+  const dispatch = useDispatch();
+  const cartItems = useSelector(selectCartItems);
 
-  const { addItemToCart } = useContext(CartContext);
-
-  const addProductToCart = () => addItemToCart(product);
+  const addProductToCart = () => dispatch(addItemToCart(cartItems, product));
 
   // TODO make Button accessible by tab
+  //  REPLACE display: none to visually-hidden
   return (
-    <div className='product-card-container'>
+    <ProductCartContainer>
       <img src={imageUrl} alt={name} />
-      <div className='footer'>
-        <span className='name'>{name}</span>
-        <span className='price'>{price}</span>
-      </div>
+      <Footer>
+        <Name className='name'>{name}</Name>
+        <Price className='price'>{price}</Price>
+      </Footer>
       <Button buttonType='inverted' onClick={addProductToCart}>
         Add to Cart
       </Button>
-    </div>
+    </ProductCartContainer>
   );
 };
 
 
 export interface ProductCardProps {
-  product: product
+  product: CategoryItem
 }
 
 

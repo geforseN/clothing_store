@@ -1,20 +1,24 @@
-import {useContext} from "react";
+import {FC} from "react";
 import {useNavigate} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
 
-import {CartContext} from "../../contexts/cart/cart.context";
+import {selectCartItems} from "../../store/cart/cart.selector";
+import {setIsCartOpen} from "../../store/cart/cart.action";
 
 import Button from "../button/button.component";
 import CartItem from "../cart_item/cart_item.component";
 
 import {CartDropdownContainer, CartItems, EmptyCartMessage} from "./cart-dropdown.styles";
 
-const CartDropdown = () => {
-  const {cartItems, setIsCartOpen} = useContext(CartContext);
+
+const CartDropdown: FC = () => {
+  const dispatch = useDispatch();
+  const cartItems = useSelector(selectCartItems);
   const navigate = useNavigate();
 
   const buttonHandler = () => {
     navigate('/checkout');
-    setIsCartOpen(false);
+    dispatch(setIsCartOpen(false));
   }
 
   return (
@@ -22,7 +26,6 @@ const CartDropdown = () => {
       {!cartItems.length ? <EmptyCartMessage>No items in cart</EmptyCartMessage> :
       <CartItems>
         {cartItems.map(cartItem =>
-          // @ts-ignore fix never
           <CartItem key={cartItem.id} cartItem={cartItem} />
         )}
       </CartItems>

@@ -1,8 +1,7 @@
 import {FC} from "react";
 
-import {cartItem} from "../../contexts/categories.context";
-
 import {CartItemContainer, ItemDetails} from "./cart_item.styles";
+import {CartItem as ICartItem} from "../../store/cart/cart.types";
 
 
 const CartItem: FC<CartItemProps> = ({cartItem}) => {
@@ -12,10 +11,8 @@ const CartItem: FC<CartItemProps> = ({cartItem}) => {
     <CartItemContainer>
       <img src={imageUrl} alt={`${name}`} />
       <ItemDetails>
-        <span className='name'>{name}</span>
-        <span className='price'>
-          {quantity} x ${price}
-        </span>
+        <span>{name}</span>
+        <span>{quantity} x ${price}</span>
       </ItemDetails>
     </CartItemContainer>
   );
@@ -23,7 +20,7 @@ const CartItem: FC<CartItemProps> = ({cartItem}) => {
 
 
 export interface CartItemProps {
-  cartItem: cartItem
+  cartItem: ICartItem
 }
 
 export default CartItem;
