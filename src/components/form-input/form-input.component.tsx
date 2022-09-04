@@ -1,36 +1,25 @@
-import './form-input.style.scss';
-import {ChangeEventHandler} from "react";
+import {InputHTMLAttributes, FC} from "react";
 
-const FormInput = (props: FormInputProps) => {
-  const {label, ...otherProps} = props
-
-  return (
-    <div className='group'>
-      <input className='form-input' {...otherProps} />
-      {label && (
-        <label
-          className={`${
-            otherProps.value.length ? 
-              'shrink' :
-              ''
-          } form-input-label`}
-        >
-          {label}
-        </label>
-      )}
-    </div>
-  );
-};
+import {FormInputGroup, InputLabel, Input} from "./form-input.styles";
 
 
-export interface FormInputProps {
+const FormInput: FC<FormInputProps> = (
+  {label, ...otherProps}
+) => (
+  <FormInputGroup>
+    <Input {...otherProps} />
+    {label && (
+      <InputLabel shrink={typeof otherProps.value === 'string' && !!otherProps.value.length}>
+        {label}
+      </InputLabel>
+    )}
+  </FormInputGroup>
+);
+
+
+export type FormInputProps = {
   label: string
-  type: string
-  required: boolean
-  onChange: ChangeEventHandler
-  name: string
-  value: string
-}
+} & InputHTMLAttributes<HTMLInputElement>
 
 
 export default FormInput;
