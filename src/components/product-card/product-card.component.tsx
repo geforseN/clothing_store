@@ -26,7 +26,7 @@ const ProductCard: FC<ProductCardProps> = ({product}) => {
         <Name className='name'>{name}</Name>
         <Price className='price'>{price}</Price>
       </Footer>
-      <Button buttonType='inverted' onClick={addProductToCart}>
+      <Button styleType='inverted' onClick={addProductToCart}>
         Add to Cart
       </Button>
     </ProductCartContainer>
