@@ -1,20 +1,25 @@
 import {ChangeEvent, FormEvent, useState} from 'react';
+import {useDispatch} from "react-redux";
+import {AuthError, AuthErrorCodes} from  "firebase/auth";
 
 import FormInput from '../form-input/form-input.component';
 import Button from '../button/button.component';
 
-import './sign-up-form.style.scss';
-import {useDispatch} from "react-redux";
 import {signUpStart} from "../../store/user/user.action";
+
+import {AccountSignUpForm, SignUpContainer} from "./sign-up-form.styles";
+import {AccountExistsAsk, AccountAdvice} from "../../routes/authentication/authentication.styles";
 
 
 const SignUpForm = () => {
-  const dispatch = useDispatch()
-  const [formFields, setFormFields] = useState(defaultFormFields);
+  const dispatch = useDispatch();
+  const [formFields, setFormFields] = useState(() => defaultFormFields);
   const {displayName, email, password, confirmPassword} = formFields;
 
-  const resetFormFields = () =>
-    setFormFields(defaultFormFields);
+  const resetFormFields = () => setFormFields(defaultFormFields);
+
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) =>
+    setFormFields({ ...formFields, [event.target.name]: event.target.value });
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
@@ -27,29 +32,26 @@ const SignUpForm = () => {
     try {
       dispatch(signUpStart(email, password, displayName));
       resetFormFields();
-    } catch (error: any) {
-      if (error.code === 'auth/email-already-in-use') {
+    } catch (error) {
+      if ((error as AuthError).code === AuthErrorCodes.EMAIL_EXISTS) {
         alert('Cannot create user, email already in use');
       } else {
-        console.log('user creation encountered an error', error);
+        alert(`User creation encountered an error: ${(error as AuthError).message}`);
       }
     }
   };
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setFormFields({ ...formFields, [event.target.name]: event.target.value });
-  };
 
   return (
-    <div className='sign-up-container'>
-      <h2>Don't have an account?</h2>
-      <span>Sign up with your email and password</span>
-      <form onSubmit={handleSubmit}>
+    <SignUpContainer>
+      <AccountExistsAsk>Don't have an account?</AccountExistsAsk>
+      <AccountAdvice>Sign up with your email and password</AccountAdvice>
+      <AccountSignUpForm onSubmit={handleSubmit}>
         <FormInput
           label='Display Name'
           type='text'
           required
-          onChange={handleChange}
+          onChange={handleInputChange}
           name='displayName'
           value={displayName}
         />
@@ -58,7 +60,7 @@ const SignUpForm = () => {
           label='Email'
           type='email'
           required
-          onChange={handleChange}
+          onChange={handleInputChange}
           name='email'
           value={email}
         />
@@ -67,23 +69,37 @@ const SignUpForm = () => {
           label='Password'
           type='password'
           required
-          onChange={handleChange}
+          onChange={handleInputChange}
           name='password'
           value={password}
         />
-
+        {/*TODO inputs factory*/}
+        {/*  <RequiredPasswordFormInput>
+               label='Confirm Password'
+               onChange={handleInputChange}
+               value={confirmPassword}
+               name?='confirmPassword'
+             </RequiredPasswordFormInput>*/}
+        {/*OR TODO */}
+        {/*    const confirmPasswordInputProps = {
+                 label: 'Confirm Password' OR make it with children prop
+                 onChange: handleInputChange
+                 value: confirmPassword
+                 name: 'confirmPassword'
+                                            <FormInput props={confirmPasswordInputProps} />
+        />*/}
         <FormInput
           label='Confirm Password'
           type='password'
           required
-          onChange={handleChange}
+          onChange={handleInputChange}
           name='confirmPassword'
           value={confirmPassword}
         />
 
         <Button type='submit'>Sign Up</Button>
-      </form>
-    </div>
+      </AccountSignUpForm>
+    </SignUpContainer>
   );
 };
 
@@ -93,5 +109,6 @@ const defaultFormFields = {
   password: '',
   confirmPassword: '',
 };
+
 
 export default SignUpForm;
