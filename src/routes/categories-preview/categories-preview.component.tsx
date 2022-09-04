@@ -10,12 +10,13 @@ import {selectCategoriesIsLoading, selectCategoriesMap} from "../../store/catego
 const CategoriesPreview: FC = () => {
   const categoriesMap = useSelector(selectCategoriesMap);
   const isLoading = useSelector(selectCategoriesIsLoading);
+  const start = 0, end = 4;
 
   return (
     <>
       {isLoading ? <Spinner /> : (
         Object.entries(categoriesMap).map(([title, products]) =>
-          <CategoryPreview key={title} title={title} products={products} />
+          <CategoryPreview key={title} title={title} products={products.slice(start, end)} />
         )
       )}
     </>
