@@ -33,7 +33,7 @@ const Navigation = () => {
         {isCartOpen && <CartDropdown /> }
       </NavigationContainer>
       <Outlet />
-  </>
+    </>
   )
 }
 

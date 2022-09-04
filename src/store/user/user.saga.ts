@@ -110,7 +110,7 @@ export function* signInAfterSignUp(
   yield* call(getSnapshotFromUserAuthorization, userAuthorization, additionalInformation);
 }
 
-
+/*                                                       */
 
 export function* onGoogleSignInStart() {
   yield* takeLatest(UserActionTypes.GOOGLE_SIGN_IN_START, signInWithGoogle)

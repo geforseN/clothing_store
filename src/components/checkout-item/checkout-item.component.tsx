@@ -4,16 +4,18 @@ import {useDispatch, useSelector} from "react-redux";
 import {selectCartItems} from "../../store/cart/cart.selector";
 import {addItemToCart, clearItemFromCart, removeItemFromCart} from "../../store/cart/cart.action";
 
+import {CartItem} from "../../store/cart/cart.types";
+
 import {
   ItemCell,
   CheckoutItemContainer,
   ItemImageCell,
   Arrow,
   ItemRemoveCell,
-  Quantity, ItemPriceDetails
+  Quantity,
+  ItemPriceDetails,
 } from "./checkout-item.styles";
 
-import {CartItem} from "../../store/cart/cart.types";
 
 
 const CheckoutItem: FC<CheckoutItemProps> = ({cartItem}) => {

@@ -1,7 +1,9 @@
 import React, {FC} from 'react';
 
-import {CategoryItemContainer, ShopNowLink, BackgroundImg} from "./directory_item.styles";
 import {Directory} from "../../data/categories";
+
+import {CategoryItemContainer, ShopNowLink, BackgroundImg} from "./directory_item.styles";
+
 
 const DirectoryItem: FC<DirectoryItemProps> = (
   {directory: {title, imageUrl, route}}
