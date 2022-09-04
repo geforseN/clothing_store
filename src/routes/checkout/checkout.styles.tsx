@@ -1,13 +1,10 @@
 import styled from "styled-components";
+import {ReactNode} from "react";
 
 export const NoItems = styled.span`
   display: flex;
   justify-content: center;
   font-size: xx-large;
-`
-
-export const CheckoutContainer = styled.div`
-
 `
 
 export const CheckoutItemsTable = styled.table`
@@ -19,9 +16,18 @@ export const CheckoutItemsTable = styled.table`
   border-collapse: collapse;
 `
 
-export const ItemsTableHeader = styled.thead`
+export const TableHeader = styled.thead`
   border: 1px solid red;
 `
+
+export const TableHeaderOneRow = (
+  {className, children}: Props
+) => (
+  <TableHeader className={className}>
+    <tr>{children}</tr>
+  </TableHeader>
+);
+
 export const HeaderCell = styled.th`
   text-transform: capitalize;
   width: 23%;
@@ -39,6 +45,34 @@ export const HeaderCell = styled.th`
   }
 `
 
-export const ItemsTableTotal = styled.tfoot`
+export const TableBody = styled.tbody`
+  // so empty here
+`
+
+export const TableTotal = styled.tfoot`
   font-size: 36px;
+`
+
+export const TableTotalOneRow = (
+  {className, children}: Props
+) => (
+  <TableTotal className={className}>
+    <tr>{children}</tr>
+  </TableTotal>
+);
+
+export const TotalText = styled.td`
+  text-align: start;
+`
+export const TotalCost = styled.td`
+  font-weight: bold;
+`
+
+type Props = {
+  className?: string
+  children?: Array<ReactNode>
+}
+
+export const CheckoutContainer = styled.div`
+  // so empty here
 `
