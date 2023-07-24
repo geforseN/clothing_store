@@ -1,6 +1,6 @@
 // https://firebase.google.com/docs/web/setup#available-libraries
 import {initializeApp} from "firebase/app";
-import firebaseConfig from "./firebaseConfig";
+import {firebaseConfig} from "./firebaseConfig"
 
 import {
   writeBatch,
